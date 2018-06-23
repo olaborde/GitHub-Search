@@ -51,6 +51,7 @@ class App extends Component {
           <SearchForm handleSearchSubmit=
           {this.handleSearchSubmit}/>
           </section>
+        </section>
           <section> 
             <SearchResults language={language}
              stars={stars}
@@ -58,8 +59,7 @@ class App extends Component {
                resetSearch={this.resetSearch}
                />
           </section>
-        </section>
-        I am ready to rock this training!
+     
       </main>
     );
   }

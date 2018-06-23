@@ -28,7 +28,7 @@ componentDidUpdate = async (prevProps, prevState) => {
     const repos = githubResponse.data.items.slice(0, 15);
     // set the state of this cmponent to populate 'repos'
 
-    console.log(repos);
+    // console.log(repos);
     this.setState({ repos });
   }
 
@@ -36,7 +36,13 @@ componentDidUpdate = async (prevProps, prevState) => {
 }
 
   render(){
-    return <ResultsGrid />
+    return (
+
+    <div>
+
+     <ResultsGrid repos={this.state.repos} />
+    </div>
+    );
   }
 }
 
