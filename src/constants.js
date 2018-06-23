@@ -1,0 +1,1 @@
+export const SEARCH_FROM_HEADING_TEXT ='Search for hot repos on Github';
