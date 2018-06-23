@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { SEARCH_FROM_HEADING_TEXT } from '../../constants'
+import { SEARCH_FORM_HEADING_TEXT } from '../../constants'
 
 const styles = {
   searchForm: {
@@ -69,6 +69,7 @@ class SearchForm extends Component {
   }
 
   handleInputChange = name => event =>{
+  //  setState is asynchronous
     this.setState({
 
       [name]: event.target.value
@@ -77,63 +78,64 @@ class SearchForm extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, handleSearchSubmit } = this.props;
     const { language, stars } = this.state;
+    
     return (
-      <section>
-
-        <Typography className={classes.searchForm}>
-          {SEARCH_FROM_HEADING_TEXT}
-
+      <section className={classes.searchForm}>
+        <Typography className={classes.headingText} variant="display1">
+          {SEARCH_FORM_HEADING_TEXT}
         </Typography>
+
         <section className={classes.formWrapper}>
-        <TextField
+          <TextField
             id="language"
             label="Language"
             value={language}
             className={classes.textFieldLarge}
             onChange={this.handleInputChange('language')}
-            // onChange ={event => this.handleInputChange(event)}
             InputLabelProps={{
               FormLabelClasses: {
                 root: classes.cssLabel,
-                focused: classes.cssFocused
-              }
+                focused: classes.cssFocused,
+              },
             }}
             InputProps={{
               classes: {
                 root: classes.textFieldLabel,
-                underline: classes.cssUnderline
-              }
+                underline: classes.cssUnderline,
+              },
             }}
           />
 
-          {/* stars textfield */}
-
-             <TextField
+          <TextField
             id="stars"
-            label="stars"
+            label="Stars"
             value={stars}
             className={classes.textFieldSmall}
             onChange={this.handleInputChange('stars')}
-            // onChange ={event => this.handleInputChange(event)}
             InputLabelProps={{
               FormLabelClasses: {
                 root: classes.cssLabel,
-                focused: classes.cssFocused
-              }
+                focused: classes.cssFocused,
+              },
             }}
             InputProps={{
               classes: {
                 root: classes.textFieldLabel,
-                underline: classes.cssUnderline
-              }
+                underline: classes.cssUnderline,
+              },
             }}
           />
-
-
         </section>
-        
+
+        <Button
+          variant="contained"
+          className={classes.button}
+          onClick={() => handleSearchSubmit(language, stars)}
+        >
+          Search
+        </Button>
       </section>
     );
   }

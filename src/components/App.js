@@ -3,6 +3,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { withStyles } from '@material-ui/core/styles';
 
 import SearchForm from './SearchForm'
+import SearchResults from './SearchResults/index'
+// import searchResults from './SearchResults/index';
+
 
 const styles = {
   withGradient: {
@@ -19,15 +22,41 @@ const styles = {
 };
 
 class App extends Component {
+  state = {
+    language: '',
+    stars: '',
+    searchInProgress: false
+
+  }
+
+  handleSearchSubmit = (language = '', stars ='') => {
+    this.setState({
+      language,
+      stars,
+      searchInProgress: true
+    })
+  }
+
+  resetSearch = () => this.setState({searchInProgress: false})
+  
   render() {
     const { classes } = this.props;
+    const {language, stars, searchInProgress} = this.state;
     
     return (
       <main className={classes.makePrettyColor}>
         <CssBaseline />
         <section className={classes.withGradient}>
           <section className={classes.contentWrapper}>
-          <SearchForm />
+          <SearchForm handleSearchSubmit=
+          {this.handleSearchSubmit}/>
+          </section>
+          <section> 
+            <SearchResults language={language}
+             stars={stars}
+              searchInProgress={searchInProgress}
+               resetSearch={this.resetSearch}
+               />
           </section>
         </section>
         I am ready to rock this training!
