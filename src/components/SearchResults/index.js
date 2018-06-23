@@ -11,6 +11,11 @@ class searchResults extends Component{
 componentDidUpdate = async (prevProps, prevState) => {
   const {language, stars, searchInProgress} = this.props;
 
+  if(prevState.repos !== this.state.repos){
+    this.props.resetSearch();
+
+    return;
+  }
 
   // a search in progress
   // if
@@ -27,9 +32,6 @@ componentDidUpdate = async (prevProps, prevState) => {
     this.setState({ repos });
   }
 
-  if(prevState.repos !== this.state.repos){
-    this.props.resetSearch();
-  }
 
 }
 
